@@ -35,6 +35,23 @@ export default {
       selectedCoach: null
     };
   },
+  computed: {
+    fullName() {
+      return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName;
+    },
+    contactLink() {
+      return this.$route.path + '/contact';
+    },
+    areas() {
+      return this.selectedCoach.areas;
+    },
+    rate() {
+      return this.selectedCoach.hourlyRate;
+    },
+    description() {
+      return this.selectedCoach.description;
+    }
+  },
   created() {
     this.selectedCoach = this.$store.getters['coaches/coaches'].find(
       coach => coach.id === this.id
