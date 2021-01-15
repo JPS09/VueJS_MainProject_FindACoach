@@ -2,24 +2,26 @@
   <section>
     Filter Part
   </section>
-  <section>
-    <div class="controls">
-      <button>Refresh</button>
-      <router-link to="/register">Register as a Coach</router-link>
-    </div>
-    <ul v-if="hasCoaches">
-      <coach-item
-        v-for="coach in filteredCoaches"
-        :key="coach.id"
-        :id="coach.id"
-        :firstName="coach.firstName"
-        :lastName="coach.lastName"
-        :rate="coach.hourlyRate"
-        :areas="coach.areas"
-      ></coach-item>
-    </ul>
-    <h3 v-else>Sorry, no coaches to display yet</h3>
-  </section>
+  <base-card>
+    <section>
+      <div class="controls">
+        <button>Refresh</button>
+        <router-link to="/register">Register as a Coach</router-link>
+      </div>
+      <ul v-if="hasCoaches">
+        <coach-item
+          v-for="coach in filteredCoaches"
+          :key="coach.id"
+          :id="coach.id"
+          :firstName="coach.firstName"
+          :lastName="coach.lastName"
+          :rate="coach.hourlyRate"
+          :areas="coach.areas"
+        ></coach-item>
+      </ul>
+      <h3 v-else>Sorry, no coaches to display yet</h3>
+    </section>
+  </base-card>
 </template>
 
 <script>
