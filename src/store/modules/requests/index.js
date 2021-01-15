@@ -1,10 +1,10 @@
-import RequestsMutations from './mutations.js';
-import RequestsActions from './action.js';
-import RequestsGetters from './getters.js';
+import requestsMutations from './mutations.js';
+import requestsActions from './action.js';
+import requestsGetters from './getters.js';
 
 export default {
   state() {},
-  mutations: RequestsMutations,
-  actions: RequestsActions,
-  getters: RequestsGetters
+  mutations: requestsMutations,
+  actions: requestsActions,
+  getters: requestsGetters
 };

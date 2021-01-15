@@ -1,10 +1,10 @@
-import CoachMutations from './mutations.js';
-import CoachActions from './actions.js';
-import CoachGetters from './getters.js';
+import coachMutations from './mutations.js';
+import coachActions from './actions.js';
+import coachGetters from './getters.js';
 
 export default {
   state() {},
-  mutations: CoachMutations,
-  actions: CoachActions,
-  getters: CoachGetters
+  mutations: coachMutations,
+  actions: coachActions,
+  getters: coachGetters
 };
