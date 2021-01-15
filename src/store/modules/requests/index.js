@@ -3,6 +3,7 @@ import requestsActions from './action.js';
 import requestsGetters from './getters.js';
 
 export default {
+  namespaced: true,
   state() {},
   mutations: requestsMutations,
   actions: requestsActions,
