@@ -5,7 +5,7 @@ import store from './store/index.js';
 
 const app = createApp(App);
 
-app.user(store);
+app.use(store);
 app.use(router);
 
 app.mount('#app');
