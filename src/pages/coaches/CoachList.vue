@@ -7,6 +7,24 @@
       <button>Refresh</button>
       <router-link to="/register">Register as a Coach</router-link>
     </div>
-    Coaches part
+    <ul v-if="hasCoaches">
+      <li v-for="coach in filteredCoaches" :key="coach.id">
+        {{ coach.firstName }} {{ coach.lastName }}
+      </li>
+    </ul>
+    <h3 v-else>Sorry, no coaches to display yet</h3>
   </section>
 </template>
+
+<script>
+export default {
+  computed: {
+    filteredCoaches() {
+      return this.$store.getters['coaches/coaches'];
+    },
+    hasCoaches() {
+      return this.$store.getters['coaches/hasCoaches'];
+    }
+  }
+};
+</script>
