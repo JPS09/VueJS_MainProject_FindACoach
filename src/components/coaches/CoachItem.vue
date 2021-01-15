@@ -6,8 +6,10 @@
       <span v-for="area in areas" :key="area">{{ area }}</span>
     </div>
     <div class="actions">
-      <router-link :to="coachContactLink">Contact Me</router-link>
-      <router-link :to="coachDetailsLink">View Details</router-link>
+      <base-button mode="outline" link :to="coachContactLink">
+        Contact Me
+      </base-button>
+      <base-button link :to="coachDetailsLink">View Details</base-button>
     </div>
   </li>
 </template>
@@ -41,10 +43,10 @@ export default {
       return this.firstName + ' ' + this.lastName;
     },
     coachContactLink() {
-      return this.$route.path + '/coaches/' + this.id + '/contact';
+      return '/coaches/' + this.id + '/contact';
     },
     coachDetailsLink() {
-      return this.$route.path + '/coaches/' + this.id;
+      return '/coaches/' + this.id;
     }
   }
 };

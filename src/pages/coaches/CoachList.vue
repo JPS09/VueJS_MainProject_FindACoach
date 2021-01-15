@@ -5,8 +5,9 @@
   <base-card>
     <section>
       <div class="controls">
-        <base-button>Refresh</base-button>
-         <base-button link to="/register">Register as a Coach</base-button> <!--Adding a prop sets it to true -->
+        <base-button mode="outline">Refresh</base-button>
+        <base-button link to="/register">Register as a Coach</base-button>
+        <!--Adding a prop sets it to true -->
       </div>
       <ul v-if="hasCoaches">
         <coach-item
