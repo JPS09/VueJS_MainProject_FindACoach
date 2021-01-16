@@ -2,7 +2,7 @@
   <section>
     <base-card>
       <h2>Join us as a Coach!</h2>
-      <coach-form></coach-form>
+      <coach-form @register-coach="registerCoach"></coach-form>
     </base-card>
   </section>
 </template>
@@ -12,6 +12,11 @@ import CoachForm from '../../components/coaches/CoachForm.vue';
 export default {
   components: {
     CoachForm
+  },
+  methods: {
+    registerCoach(formData) {
+      console.log(formData);
+    }
   }
 };
 </script>
