@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit="submitForm">
     <div class="form-controls">
       <label for="firstname">First Name</label>
       <input type="text" id="firstname" v-model.trim="firstName" />
@@ -45,6 +45,18 @@ export default {
       description: '',
       areas: []
     };
+  },
+  methods: {
+    submitForm() {
+      const formData = {
+        first: this.firstName,
+        last: this.lastName,
+        desc: this.description,
+        areas: this.areas,
+        rate: this.rate
+      };
+      console.log(formData);
+    }
   }
 };
 </script>
