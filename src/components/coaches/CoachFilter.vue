@@ -25,12 +25,12 @@ export default {
     };
   },
   methods: {
-    setfilter(event) {
-      const inputID = event.target.id;
+    setFilter(event) {
+      const inputId = event.target.id;
       const isActive = event.target.checked;
       const updatedFilters = {
         ...this.filters, //Merge this.filters into updatedFilters
-        [inputID]: isActive //Accessing the key that was changed and updating it.
+        [inputId]: isActive //Accessing the key that was changed and updating it.
       };
       this.filters = updatedFilters;
       this.$emit('change-filter', updatedFilters);
