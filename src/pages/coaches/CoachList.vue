@@ -1,6 +1,6 @@
 <template>
   <section>
-    <coach-filter></coach-filter>
+    <coach-filter @change-filter="setFilter"></coach-filter>
   </section>
   <base-card>
     <section>
@@ -34,12 +34,26 @@ export default {
     CoachItem,
     CoachFilter
   },
+  data() {
+    return {
+      activeFilters: {
+        backend: true,
+        frontend: true,
+        career: true
+      }
+    };
+  },
   computed: {
     filteredCoaches() {
       return this.$store.getters['coaches/coaches'];
     },
     hasCoaches() {
       return this.$store.getters['coaches/hasCoaches'];
+    }
+  },
+  methods: {
+    setFilter(updatedFilters) {
+      this.activeFilters = updatedFilters;
     }
   }
 };
