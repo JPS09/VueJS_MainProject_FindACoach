@@ -20,11 +20,11 @@
       <h3>What do you want to teach our students?</h3>
       <div>
         <input type="checkbox" id="frontend" value="frontend" v-model="areas" />
-        <label for="frontend"> Front-End Development</label>
+        <label for="frontend">Front-End Development</label>
       </div>
       <div>
         <input type="checkbox" id="backend" value="backend" v-model="areas" />
-        <label for="backend"> Back-End Development</label>
+        <label for="backend">Back-End Development</label>
       </div>
       <div>
         <input type="checkbox" id="career" value="career" v-model="areas" />
@@ -37,6 +37,7 @@
 
 <script>
 export default {
+  emits: ['register-coach'],
   data() {
     return {
       firstName: '',
@@ -55,7 +56,7 @@ export default {
         areas: this.areas,
         rate: this.rate
       };
-      console.log(formData);
+      this.$emit('register-coach', formData);
     }
   }
 };
