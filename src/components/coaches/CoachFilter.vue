@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  emits: ['change-filter'],
   data() {
     return {
       filters: {
@@ -28,8 +29,8 @@ export default {
       const inputID = event.target.id;
       const isActive = event.target.checked;
       const updatedFilters = {
-        ...this.filters,
-        [inputID]: isActive
+        ...this.filters, //Merge this.filters into updatedFilters
+        [inputID]: isActive //Accessing the key that was changed and updating it.
       };
       this.filters = updatedFilters;
       this.$emit('change-filter', updatedFilters);
