@@ -1,5 +1,5 @@
 <template>
-  <form @submit="submitForm">
+  <form @submit.prevent="submitForm">
     <div class="form-controls">
       <label for="firstname">First Name</label>
       <input type="text" id="firstname" v-model.trim="firstName" />
