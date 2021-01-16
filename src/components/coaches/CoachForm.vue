@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style scoped>
-.form-control {
+.form-controls {
   margin: 0.5rem 0;
 }
 
