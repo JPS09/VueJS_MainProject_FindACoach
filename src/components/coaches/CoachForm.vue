@@ -2,15 +2,15 @@
   <form>
     <div class="form-controls">
       <label for="firstname">First Name</label>
-      <input type="text" id="firstname" v-model="firstName" />
+      <input type="text" id="firstname" v-model.trim="firstName" />
     </div>
     <div class="form-controls">
       <label for="lastname">Last Name</label>
-      <input type="text" id="lastname" v-model="lastName" />
+      <input type="text" id="lastname" v-model.trim="lastName" />
     </div>
     <div class="form-controls">
       <label for="description">Description</label>
-      <textarea id="description" rows="5" v-model="description" />
+      <textarea id="description" rows="5" v-model.trim="description" />
     </div>
     <div class="form-controls">
       <label for="rate">Hourly Rate</label>
