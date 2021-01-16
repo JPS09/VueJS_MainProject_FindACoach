@@ -16,6 +16,7 @@ export default {
   methods: {
     registerCoach(formData) {
       this.$store.dispatch('coaches/registerCoach', formData);
+      this.$router.replace('/coaches'); //Prevent backing to previous page after redirection
     }
   }
 };
