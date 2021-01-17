@@ -1,7 +1,7 @@
 export default {
   registerCoach(context, payload) {
     const coachData = {
-      id: new Date().toUTCString(),
+      id: context.rootGetters.userId,
       firstName: payload.first,
       lastName: payload.last,
       description: payload.desc,
