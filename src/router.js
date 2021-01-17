@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory} from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import CoachDetails from './pages/coaches/CoachDetails.vue';
 import CoachList from './pages/coaches/CoachList.vue';
 import CoachRegistration from './pages/coaches/CoachRegistration.vue';
@@ -14,6 +14,7 @@ const router = createRouter({
     {
       path: '/coaches/:id',
       component: CoachDetails,
+      props: true,
       children: [{ path: 'contact', component: ContactCoach }] //Access to coach identifier
     },
     { path: '/register', component: CoachRegistration },

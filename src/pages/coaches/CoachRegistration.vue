@@ -1,5 +1,23 @@
 <template>
-  <div>
-    Form for Coach registration
-  </div>
+  <section>
+    <base-card>
+      <h2>Join us as a Coach!</h2>
+      <coach-form @register-coach="registerCoach"></coach-form>
+    </base-card>
+  </section>
 </template>
+
+<script>
+import CoachForm from '../../components/coaches/CoachForm.vue';
+export default {
+  components: {
+    CoachForm
+  },
+  methods: {
+    registerCoach(formData) {
+      this.$store.dispatch('coaches/registerCoach', formData);
+      this.$router.replace('/coaches'); //Prevent backing to previous page after redirection
+    }
+  }
+};
+</script>
