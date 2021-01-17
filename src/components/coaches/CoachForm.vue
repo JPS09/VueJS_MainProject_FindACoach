@@ -1,22 +1,37 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-controls">
+    <div class="form-controls" :class="{ invalid: !firstName.valid }">
       <label for="firstname">First Name</label>
       <input type="text" id="firstname" v-model.trim="firstName.val" />
+      <p v-if="!firstName.valid">
+        This input cannot be blank, please enter a first name. (We know you have
+        one)
+      </p>
     </div>
-    <div class="form-controls">
+    <div class="form-controls" :class="{ invalid: !lastName.valid }">
       <label for="lastname">Last Name</label>
       <input type="text" id="lastname" v-model.trim="lastName.val" />
+      <p v-if="!lastName.valid">
+        This input cannot be blank, please enter a last name. (We know you have
+        one)
+      </p>
     </div>
-    <div class="form-controls">
+    <div class="form-controls" :class="{ invalid: !description.valid }">
       <label for="description">Description</label>
       <textarea id="description" rows="5" v-model.trim="description.val" />
+      <p v-if="!description.valid">
+        This input cannot be blank, please tell us a bit about you
+      </p>
     </div>
-    <div class="form-controls">
+    <div class="form-controls" :class="{ invalid: !rate.valid }">
       <label for="rate">Hourly Rate</label>
       <input type="number" id="rate" v-model.number="rate.val" />
+      <p v-if="!rate.valid">
+        You cannot enter a negative value or leave this blank, you need to be
+        paid for your services
+      </p>
     </div>
-    <div class="form-controls">
+    <div class="form-controls" :class="{ invalid: !areas.valid }">
       <h3>What do you want to teach our students?</h3>
       <div>
         <input
@@ -40,7 +55,9 @@
         <input type="checkbox" id="career" value="career" v-model="areas.val" />
         <label for="career">Career Counseling</label>
       </div>
+      <p v-if="!areas.valid">Please select at least one choice</p>
     </div>
+    <p v-if="!formIsValid">Check your inputs and try to submit again</p>
     <base-button>Register</base-button>
   </form>
 </template>
@@ -93,6 +110,12 @@ export default {
         : (this.areas.valid = true);
     },
     submitForm() {
+      this.validateForm();
+
+      if (!this.formIsValid) {
+        return;
+      }
+
       const formData = {
         first: this.firstName,
         last: this.lastName,
