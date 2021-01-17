@@ -2,7 +2,12 @@
   <form @submit.prevent="submitForm">
     <div class="form-controls" :class="{ invalid: !firstName.valid }">
       <label for="firstname">First Name</label>
-      <input type="text" id="firstname" v-model.trim="firstName.val" />
+      <input
+        type="text"
+        id="firstname"
+        v-model.trim="firstName.val"
+        @blur="clearError('firstName')"
+      />
       <p v-if="!firstName.valid">
         This input cannot be blank, please enter a first name. (We know you have
         one)
@@ -10,7 +15,12 @@
     </div>
     <div class="form-controls" :class="{ invalid: !lastName.valid }">
       <label for="lastname">Last Name</label>
-      <input type="text" id="lastname" v-model.trim="lastName.val" />
+      <input
+        type="text"
+        id="lastname"
+        v-model.trim="lastName.val"
+        @blur="clearError('lastName')"
+      />
       <p v-if="!lastName.valid">
         This input cannot be blank, please enter a last name. (We know you have
         one)
@@ -18,14 +28,24 @@
     </div>
     <div class="form-controls" :class="{ invalid: !description.valid }">
       <label for="description">Description</label>
-      <textarea id="description" rows="5" v-model.trim="description.val" />
+      <textarea
+        id="description"
+        rows="5"
+        v-model.trim="description.val"
+        @blur="clearError('description')"
+      />
       <p v-if="!description.valid">
         This input cannot be blank, please tell us a bit about you
       </p>
     </div>
     <div class="form-controls" :class="{ invalid: !rate.valid }">
       <label for="rate">Hourly Rate</label>
-      <input type="number" id="rate" v-model.number="rate.val" />
+      <input
+        type="number"
+        id="rate"
+        v-model.number="rate.val"
+        @blur="clearError('rate')"
+      />
       <p v-if="!rate.valid">
         You cannot enter a negative value or leave this blank, you need to be
         paid for your services
@@ -39,6 +59,7 @@
           id="frontend"
           value="frontend"
           v-model="areas.val"
+          @blur="clearError('areas')"
         />
         <label for="frontend">Front-End Development</label>
       </div>
@@ -48,11 +69,18 @@
           id="backend"
           value="backend"
           v-model="areas.val"
+          @blur="clearError('areas')"
         />
         <label for="backend">Back-End Development</label>
       </div>
       <div>
-        <input type="checkbox" id="career" value="career" v-model="areas.val" />
+        <input
+          type="checkbox"
+          id="career"
+          value="career"
+          v-model="areas.val"
+          @blur="clearError('areas')"
+        />
         <label for="career">Career Counseling</label>
       </div>
       <p v-if="!areas.valid">Please select at least one choice</p>
@@ -91,6 +119,9 @@ export default {
     };
   },
   methods: {
+    clearError(input) {
+      this[input].valid = true;
+    },
     validateForm() {
       this.formIsValid = true;
       this.firstName.val === ''
