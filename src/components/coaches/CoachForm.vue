@@ -105,7 +105,7 @@ export default {
       this.description.val === ''
         ? ((this.description.valid = false), (this.formIsValid = false))
         : (this.description.valid = true);
-      this.areas.length.val === 0
+      this.areas.val.length === 0
         ? ((this.areas.valid = false), (this.formIsValid = false))
         : (this.areas.valid = true);
     },
@@ -176,7 +176,7 @@ h3 {
   font-size: 1rem;
 }
 
-.invalid label {
+.invalid label, h3 {
   color: red;
 }
 
