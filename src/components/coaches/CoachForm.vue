@@ -77,19 +77,19 @@ export default {
     validateForm() {
       this.formIsValid = true;
       this.firstName.val === ''
-        ? (this.firstName.valid = false)
+        ? ((this.firstName.valid = false), (this.formIsValid = false))
         : (this.firstName.valid = true);
       this.lastName.val === ''
-        ? (this.lastName.valid = false)
+        ? ((this.lastName.valid = false), (this.formIsValid = false))
         : (this.lastName.valid = true);
       !this.rate.val || this.rate.val < 0
-        ? (this.rate.valid = false)
+        ? ((this.rate.valid = false), (this.formIsValid = false))
         : (this.rate.valid = true);
       this.description.val === ''
-        ? (this.description.valid = false)
+        ? ((this.description.valid = false), (this.formIsValid = false))
         : (this.description.valid = true);
       this.areas.length.val === 0
-        ? (this.areas.valid = false)
+        ? ((this.areas.valid = false), (this.formIsValid = false))
         : (this.areas.valid = true);
     },
     submitForm() {
