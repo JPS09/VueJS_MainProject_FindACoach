@@ -117,11 +117,11 @@ export default {
       }
 
       const formData = {
-        first: this.firstName,
-        last: this.lastName,
-        desc: this.description,
-        areas: this.areas,
-        rate: this.rate
+        first: this.firstName.val,
+        last: this.lastName.val,
+        desc: this.description.val,
+        areas: this.areas.val,
+        rate: this.rate.val
       };
       this.$emit('register-coach', formData);
     }
@@ -176,7 +176,8 @@ h3 {
   font-size: 1rem;
 }
 
-.invalid label, h3 {
+.invalid label,
+.invalid h3 {
   color: red;
 }
 
