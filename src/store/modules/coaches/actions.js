@@ -23,5 +23,32 @@ export default {
       // show error
     }
     context.commit('registerCoach', { ...coachData, id: coachId });
+  },
+  async fetchCoaches(context) {
+    const response = await fetch(
+      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`
+    );
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      // show error
+    }
+
+    const coaches = [];
+
+    for (const key in responseData) {
+      // Iterating through each data node and extracting the information for each of theses nodes
+      const coach = {
+        id: key,
+        firstName: responseData[key].firstName,
+        lastName: responseData[key].lastName,
+        description: responseData[key].description,
+        hourlyRate: responseData[key].hourlyRate,
+        areas: responseData[key].areas
+      };
+      coaches.push(coach);
+    }
+
+    context.commit('fetchCoaches', coaches);
   }
 };
