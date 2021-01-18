@@ -5,9 +5,12 @@
         <h2>Received Requests</h2>
       </header>
       <ul v-if="hasRequests">
-        <li v-for="request in requests" :key="request.id">
-          {{ request.message }}
-        </li>
+        <request-item
+          v-for="request in requests"
+          :key="request.id"
+          :message="request.message"
+          :email="request.userEmail"
+        ></request-item>
       </ul>
       <h3 v-else>You haven't received any requests yet!</h3>
     </base-card>
@@ -15,7 +18,11 @@
 </template>
 
 <script>
+import RequestItem from '../../components/requests/RequestItem.vue';
 export default {
+  components: {
+    RequestItem
+  },
   computed: {
     requests() {
       return this.$store.getters['requests/receivedRequests'];
