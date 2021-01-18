@@ -7,7 +7,7 @@ export default {
   },
   isCoach(_1, getters, _2, rootGetters) {
     const coaches = getters.coaches;
-    const userId = rootGetters.userId;
-    return coaches.some(coach => coach.id === userId); //Check if at least one element is true
+    const coachId = rootGetters.coachId;
+    return coaches.some(coach => coach.id === coachId); //Check if at least one element is true
   }
 };
