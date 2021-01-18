@@ -3,6 +3,7 @@
     <div class="form-controls">
       <label for="useremail">Your E-Mail</label>
       <input type="email" id="useremail" v-model.trim="email.val" />
+      <p v-if="!email.valid">Please enter your e-mail</p>
     </div>
     <div class="form-controls">
       <label for="usermessage">Your message to the coach</label>
@@ -13,6 +14,7 @@
         rows="5"
         v-model.trim="message.val"
       ></textarea>
+      <p v-if="!message.valid">Please enter a message for your coach</p>
     </div>
     <div class="actions">
       <base-button mode="outline">Send</base-button>
