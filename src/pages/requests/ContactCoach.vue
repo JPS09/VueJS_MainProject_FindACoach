@@ -30,7 +30,7 @@ export default {
     };
   },
   methods: {
-    submitForm() {
+    validateForm() {
       this.formIsvalid = true;
       this.email.val === '' || !this.email.val.includes('@')
         ? ((this.email.valid = false), (this.formIsvalid = false))
@@ -38,6 +38,11 @@ export default {
       this.message.val === ''
         ? ((this.message.valid = false), (this.formIsvalid = false))
         : (this.message.valid = true);
+    }
+  },
+  submitForm() {
+    if (!this.formIsvalid) {
+      return;
     }
   }
 };
