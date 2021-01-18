@@ -57,9 +57,16 @@ export default {
     },
     submitForm() {
       this.validateForm();
+      console.log(this.$route.params.id);
       if (!this.formIsvalid) {
         return;
       }
+      const sentRequest = {
+        coachId: this.$route.params.id,
+        email: this.email.val,
+        message: this.message.val
+      };
+      this.$store.dispatch('addRequest', sentRequest);
     }
   }
 };
