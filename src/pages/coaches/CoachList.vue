@@ -14,7 +14,7 @@
       <div v-if='isLoading'>
         <base-spinner></base-spinner>
       </div>
-      <ul v-if="hasCoaches">
+      <ul v-else-if="hasCoaches">
         <coach-item
           v-for="coach in filteredCoaches"
           :key="coach.id"
@@ -66,7 +66,7 @@ export default {
       });
     },
     hasCoaches() {
-      return this.$store.getters['coaches/hasCoaches'];
+      return this.$store.getters['coaches/hasCoaches'] && !this.isLoading;
     },
     isCoach() {
       return this.$store.getters['coaches/isCoach'];
