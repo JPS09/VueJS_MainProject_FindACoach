@@ -66,7 +66,7 @@ export default {
         email: this.email.val,
         message: this.message.val
       };
-      this.$store.dispatch('addRequest', sentRequest);
+      this.$store.dispatch('requests/addRequest', sentRequest);
     }
   }
 };
