@@ -32,7 +32,7 @@ export default {
   methods: {
     submitForm() {
       this.formIsvalid = true;
-      this.email.val || !this.email.val.includes('@') === ''
+      this.email.val === '' || !this.email.val.includes('@')
         ? ((this.email.valid = false), (this.formIsvalid = false))
         : (this.email.valid = true);
       this.message.val === ''
