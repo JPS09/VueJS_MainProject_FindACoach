@@ -1,11 +1,11 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-controls">
+    <div class="form-controls" :class="{ errors: !email.valid }">
       <label for="useremail">Your E-Mail</label>
       <input type="email" id="useremail" v-model.trim="email.val" />
-      <p v-if="!email.valid">Please enter your e-mail</p>
+      <p class="errors" v-if="!email.valid">Please enter your e-mail</p>
     </div>
-    <div class="form-controls">
+    <div class="form-controls" :class="{ errors: !message.valid }">
       <label for="usermessage">Your message to the coach</label>
       <textarea
         name="message"
@@ -14,7 +14,9 @@
         rows="5"
         v-model.trim="message.val"
       ></textarea>
-      <p v-if="!message.valid">Please enter a message for your coach</p>
+      <p class="errors" v-if="!message.valid">
+        Please enter a message for your coach
+      </p>
     </div>
     <div class="actions">
       <base-button mode="outline">Send</base-button>
