@@ -32,13 +32,13 @@ export default {
   methods: {
     submitForm() {
       this.formIsvalid = true;
-      this.email.val === ''
-        ? ((this.email.val = false || !this.email.val.includes('@')),
+      this.email.valid === ''
+        ? ((this.email.valid = false || !this.email.valid.includes('@')),
           (this.formIsvalid = false))
-        : ((this.email.val = true), (this.formIsvalid = true));
+        : (this.email.valid = true);
       this.message.val === ''
-        ? ((this.message.val = false), (this.formIsvalid = false))
-        : ((this.message.val = true), (this.formIsvalid = true));
+        ? ((this.message.valid = false), (this.formIsvalid = false))
+        : (this.message.valid = true);
     }
   }
 };
