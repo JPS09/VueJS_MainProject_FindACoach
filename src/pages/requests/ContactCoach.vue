@@ -59,7 +59,8 @@ export default {
       this.validateForm();
 
       if (!this.formIsvalid) {
-        return; // Stops this methods execution if form is invalid
+        // Stops this methods execution if form is invalid
+        return;
       }
 
       const sentRequest = {
@@ -68,6 +69,7 @@ export default {
         message: this.message.val
       };
       this.$store.dispatch('requests/addRequest', sentRequest);
+      this.$router.replace('/coaches');
     }
   }
 };
