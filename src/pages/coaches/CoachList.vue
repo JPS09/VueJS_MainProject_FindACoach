@@ -11,6 +11,9 @@
         </base-button>
         <!--Adding a prop sets it to true -->
       </div>
+      <div v-if='isLoading'>
+        <base-spinner></base-spinner>
+      </div>
       <ul v-if="hasCoaches">
         <coach-item
           v-for="coach in filteredCoaches"
@@ -38,6 +41,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       activeFilters: {
         backend: true,
         frontend: true,
@@ -72,8 +76,10 @@ export default {
     setFilter(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    loadCoaches() {
-      this.$store.dispatch('coaches/fetchCoaches');
+    async loadCoaches() {
+      this.isLoading = true;
+      await this.$store.dispatch('coaches/fetchCoaches');
+      this.isLoading = false;
     }
   },
   created() {
