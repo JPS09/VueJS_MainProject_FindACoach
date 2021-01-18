@@ -57,10 +57,11 @@ export default {
     },
     submitForm() {
       this.validateForm();
-      console.log(this.$route.params.id);
+
       if (!this.formIsvalid) {
-        return;
+        return; // Stops this methods execution if form is invalid
       }
+
       const sentRequest = {
         coachId: this.$route.params.id,
         email: this.email.val,
