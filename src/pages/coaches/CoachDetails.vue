@@ -40,7 +40,6 @@ export default {
       return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName;
     },
     contactLink() {
-      console.log(this.$route.path)
       if (this.$route.path === `/coaches/${this.id}/contact`) {
         return this.$route.path;
       } else {
