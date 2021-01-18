@@ -2,7 +2,12 @@
   <form @submit.prevent="submitForm">
     <div class="form-controls" :class="{ errors: !email.valid }">
       <label for="useremail">Your E-Mail</label>
-      <input type="email" id="useremail" v-model.trim="email.val" />
+      <input
+        type="email"
+        id="useremail"
+        v-model.trim="email.val"
+        @blur="clearErrors('email')"
+      />
       <p class="errors" v-if="!email.valid">Please enter your e-mail</p>
     </div>
     <div class="form-controls" :class="{ errors: !message.valid }">
@@ -13,6 +18,7 @@
         cols="20"
         rows="5"
         v-model.trim="message.val"
+        @blur="clearErrors('message')"
       ></textarea>
       <p class="errors" v-if="!message.valid">
         Please enter a message for your coach
@@ -21,6 +27,9 @@
     <div class="actions">
       <base-button mode="outline">Send</base-button>
     </div>
+    <p v-if="!formIsvalid" :class="{ errors: !formIsvalid }">
+      Please Check out the above errors and try sending it again
+    </p>
   </form>
 </template>
 
@@ -34,6 +43,9 @@ export default {
     };
   },
   methods: {
+    clearErrors(input) {
+      this[input].valid = true;
+    },
     validateForm() {
       this.formIsvalid = true;
       this.email.val === '' || !this.email.val.includes('@')
@@ -42,11 +54,12 @@ export default {
       this.message.val === ''
         ? ((this.message.valid = false), (this.formIsvalid = false))
         : (this.message.valid = true);
-    }
-  },
-  submitForm() {
-    if (!this.formIsvalid) {
-      return;
+    },
+    submitForm() {
+      this.validateForm();
+      if (!this.formIsvalid) {
+        return;
+      }
     }
   }
 };
