@@ -6,12 +6,12 @@
     <section>
       <div class="controls">
         <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
-        <base-button link to="/register" v-if="!isCoach">
+        <base-button link to="/register" v-if="!isCoach && !isLoading">
           Register as a Coach
         </base-button>
         <!--Adding a prop sets it to true -->
       </div>
-      <div v-if='isLoading'>
+      <div v-if="isLoading">
         <base-spinner></base-spinner>
       </div>
       <ul v-else-if="hasCoaches">
