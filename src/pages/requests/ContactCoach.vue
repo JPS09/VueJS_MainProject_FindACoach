@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent>
+  <form @submit.prevent="submitForm">
     <div class="form-controls">
       <label for="useremail">Your E-Mail</label>
       <input type="email" id="useremail" v-model.trim="email.val" />
@@ -25,8 +25,21 @@ export default {
   data() {
     return {
       email: { val: '', valid: true },
-      message: { val: '', valid: true }
+      message: { val: '', valid: true },
+      formIsvalid: true
     };
+  },
+  methods: {
+    submitForm() {
+      this.formIsvalid = true;
+      this.email.val === ''
+        ? ((this.email.val = false || !this.email.val.includes('@')),
+          (this.formIsvalid = false))
+        : ((this.email.val = true), (this.formIsvalid = true));
+      this.message.val === ''
+        ? ((this.message.val = false), (this.formIsvalid = false))
+        : ((this.message.val = true), (this.formIsvalid = true));
+    }
   }
 };
 </script>
