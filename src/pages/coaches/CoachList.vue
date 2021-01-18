@@ -1,4 +1,12 @@
 <template>
+  <base-dialog
+    :show="!!error"
+    title="Something went wrong"
+    @close="handleError"
+  >
+    <!--- '!!' converts the value to a boolean-->
+    <p>{{ error }}</p>
+  </base-dialog>
   <section>
     <coach-filter @change-filter="setFilter"></coach-filter>
   </section>
@@ -85,6 +93,9 @@ export default {
         this.error = error.message || 'Something went wrong';
       }
       this.isLoading = false;
+    },
+    handleError() {
+      this.error = null;
     }
   },
   created() {
