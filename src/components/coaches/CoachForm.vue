@@ -142,7 +142,6 @@ export default {
     },
     submitForm() {
       this.validateForm();
-      console.log('hello')
 
       if (!this.formIsValid) {
         return;
