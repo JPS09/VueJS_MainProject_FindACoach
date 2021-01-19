@@ -1,6 +1,6 @@
 <template>
   <base-card>
-    <form>
+    <form @submit.prevent="submitForm">
       <div class="form-controls">
         <label for="email">E-mail</label>
         <input type="email" id="email" v-model="email" />
@@ -9,6 +9,9 @@
         <label for="password">Password</label>
         <input type="password" id="password" v-model="password" />
       </div>
+      <p v-if="!isFormValid" :class="{ errors: !isFormValid }">
+        At least one input is blank, please fix this issue and try again
+      </p>
       <base-button>Login</base-button>
       <base-button type="button" mode="flat">Sign-up Instead</base-button>
     </form>
@@ -20,8 +23,18 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      isFormValid: true,
+      mode: 'login'
     };
+  },
+  methods: {
+    submitForm() {
+      if (this.email === '' || this.password == '') {
+        this.isFormValid = false;
+        return;
+      }
+    }
   }
 };
 </script>
