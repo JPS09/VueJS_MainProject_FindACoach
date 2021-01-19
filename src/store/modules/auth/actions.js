@@ -7,7 +7,7 @@ export default {
       returnSecureToken: true
     };
     const response = await fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDnPXkQ_Wc8-QHI7AuTXfwnKhNmMX6BaUA',
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.AUTH_KEY}`,
       {
         method: 'POST',
         body: JSON.stringify(newUser)

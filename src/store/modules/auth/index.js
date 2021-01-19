@@ -4,7 +4,9 @@ import authGetters from './getters.js';
 export default {
   state() {
     return {
-      coachId: 'c3'
+      coachId: null,
+      token: null,
+      tokenExpiration: null
     };
   },
   mutations: authMutations,
