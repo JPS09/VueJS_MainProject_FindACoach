@@ -8,16 +8,6 @@ const store = createStore({
     coaches: coachModule,
     requests: requestsModule,
     auth: authModule
-  },
-  state() {
-    return {
-      coachId: 'c3'
-    };
-  },
-  getters: {
-    coachId(state) {
-      return state.coachId;
-    }
   }
 });
 

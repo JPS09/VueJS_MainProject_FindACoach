@@ -4,7 +4,7 @@ import authGetters from './getters.js';
 export default {
   state() {
     return {
-      mode: 'login'
+      coachId: 'c3'
     };
   },
   mutations: authMutations,
