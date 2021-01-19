@@ -22,5 +22,11 @@ export default {
       );
       throw error;
     }
+    const localUser = {
+      token: responseData.idToken,
+      userId: responseData.localId,
+      tokenExpiration: responseData.expiresIn
+    };
+    context.commit('setUser', localUser);
   }
 };
