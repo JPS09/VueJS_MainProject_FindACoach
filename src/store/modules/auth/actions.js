@@ -7,7 +7,7 @@ export default {
       returnSecureToken: true
     };
     const response = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.AUTH_KEY}`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.VUE_APP_AUTH_KEY}`,
       {
         method: 'POST',
         body: JSON.stringify(newUser)
@@ -22,6 +22,7 @@ export default {
       );
       throw error;
     }
+    console.log(responseData);
     const localUser = {
       token: responseData.idToken,
       userId: responseData.localId,
