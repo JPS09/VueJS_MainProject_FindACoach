@@ -33,7 +33,7 @@ body {
 
 .routes-enter-from {
   opacity: 0;
-  transform: translateY(-50vh);
+  transform: translateY(-15vh);
 }
 
 .routes-leave-to {
