@@ -30,7 +30,7 @@ export default {
       return;
     }
     const response = await fetch(
-      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches.jso`
+      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`
     );
     const responseData = await response.json();
 
