@@ -3,11 +3,16 @@
     <form @submit.prevent="submitForm">
       <div class="form-controls">
         <label for="email">E-mail</label>
-        <input type="email" id="email" v-model="email" />
+        <input type="email" id="email" v-model="email" @blur="clearErrors" />
       </div>
       <div class="form-controls">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="password" />
+        <input
+          type="password"
+          id="password"
+          v-model="password"
+          @blur="clearErrors"
+        />
       </div>
       <p v-if="!isFormValid" :class="{ errors: !isFormValid }">
         At least one input is blank, please fix this issue and try again
@@ -30,10 +35,14 @@ export default {
   },
   methods: {
     submitForm() {
+      this.isFormValid = true;
       if (this.email === '' || this.password == '') {
         this.isFormValid = false;
         return;
       }
+    },
+    clearErrors() {
+      this.isFormValid = true;
     }
   }
 };
