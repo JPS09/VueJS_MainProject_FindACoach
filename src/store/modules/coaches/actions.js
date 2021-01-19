@@ -11,7 +11,7 @@ export default {
     };
     const response = await fetch(
       //Is a promise, like a .then
-      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches/coach${coachId}.json`,
+      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches/${coachId}.json`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData)
