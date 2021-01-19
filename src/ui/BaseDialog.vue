@@ -1,21 +1,23 @@
 <template>
   <teleport to="body">
     <div v-if="show" @click="tryClose" class="backdrop"></div>
-    <dialog open v-if="show">
-      <header>
-        <slot name="header">
-          <h2>{{ title }}</h2>
-        </slot>
-      </header>
-      <section>
-        <slot></slot>
-      </section>
-      <menu v-if="!fixed">
-        <slot name="actions">
-          <base-button @click="tryClose">Close</base-button>
-        </slot>
-      </menu>
-    </dialog>
+    <transition name="dialog">
+      <dialog open v-if="show">
+        <header>
+          <slot name="header">
+            <h2>{{ title }}</h2>
+          </slot>
+        </header>
+        <section>
+          <slot></slot>
+        </section>
+        <menu v-if="!fixed">
+          <slot name="actions">
+            <base-button @click="tryClose">Close</base-button>
+          </slot>
+        </menu>
+      </dialog>
+    </transition>
   </teleport>
 </template>
 
@@ -24,17 +26,17 @@ export default {
   props: {
     show: {
       type: Boolean,
-      required: true,
+      required: true
     },
     title: {
       type: String,
-      required: false,
+      required: false
     },
     fixed: {
       type: Boolean,
       required: false,
-      default: false,
-    },
+      default: false
+    }
   },
   emits: ['close'],
   methods: {
@@ -43,8 +45,8 @@ export default {
         return;
       }
       this.$emit('close');
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -95,11 +97,28 @@ menu {
   justify-content: flex-end;
   margin: 0;
 }
+.dialog-enter-active {
+  animation: dialog-animation 0.3s ease-out;
+}
+.dialog-leave-active {
+  animation: dialog-animation 0.3s ease-in reverse;
+}
 
 @media (min-width: 768px) {
   dialog {
     left: calc(50% - 20rem);
     width: 40rem;
+  }
+}
+
+@keyframes dialog-animation {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 </style>
