@@ -46,7 +46,7 @@ body {
   transform: translateY(0);
 }
 .routes-enter-active {
-  transition: 0.5s ease-out;
+  transition: 0.4s ease-out;
 }
 
 .routes-leave-active {
