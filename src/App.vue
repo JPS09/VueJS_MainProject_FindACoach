@@ -33,11 +33,11 @@ body {
 
 .routes-enter-from {
   opacity: 0;
-  transform: translateY(50vh);
+  transform: translateY(-50vh);
 }
 
 .routes-leave-to {
-  transform: translateX(50vw);
+  transform: translateX(-50vw);
   opacity: 0;
 }
 .routes-enter-to,
@@ -50,6 +50,6 @@ body {
 }
 
 .routes-leave-active {
-  transition: 0.5s ease-in;
+  transition: 0.4s ease-in;
 }
 </style>
