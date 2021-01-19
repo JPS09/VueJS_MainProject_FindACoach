@@ -31,22 +31,25 @@ body {
   margin: 0;
 }
 
+.routes-enter-from {
+  opacity: 0;
+  transform: translateY(50vh);
+}
+
+.routes-leave-to {
+  transform: translateX(50vw);
+  opacity: 0;
+}
+.routes-enter-to,
+.routes-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
 .routes-enter-active {
-  animation: route-animation 0.5s ease-out;
+  transition: 0.5s ease-out;
 }
 
 .routes-leave-active {
-  animation: route-animation 0.5s ease-in reverse;
-}
-
-@keyframes route-animation {
-  from {
-    transform: translateX(135vh);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0px);
-    opacity: 1;
-  }
+  transition: 0.5s ease-in;
 }
 </style>
