@@ -3,14 +3,19 @@
     <form @submit.prevent="submitForm">
       <div class="form-controls">
         <label for="email">E-mail</label>
-        <input type="email" id="email" v-model="email" @blur="clearErrors" />
+        <input
+          type="email"
+          id="email"
+          v-model.trim="email"
+          @blur="clearErrors"
+        />
       </div>
       <div class="form-controls">
         <label for="password">Password</label>
         <input
           type="password"
           id="password"
-          v-model="password"
+          v-model.trim="password"
           @blur="clearErrors"
         />
       </div>
@@ -36,7 +41,12 @@ export default {
   methods: {
     submitForm() {
       this.isFormValid = true;
-      if (this.email === '' || this.password == '') {
+      if (
+        this.email === '' ||
+        !this.email.includes('@') ||
+        this.password == '' ||
+        this.password.length < 6
+      ) {
         this.isFormValid = false;
         return;
       }
