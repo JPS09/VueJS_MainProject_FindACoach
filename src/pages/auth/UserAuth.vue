@@ -20,7 +20,7 @@
         />
       </div>
       <p v-if="!isFormValid" :class="{ errors: !isFormValid }">
-        At least one input is blank, please fix this issue and try again
+        At least one input is blank or your password is smaller than 6 characters
       </p>
       <base-button>Login</base-button>
       <base-button type="button" mode="flat">Sign-up Instead</base-button>
