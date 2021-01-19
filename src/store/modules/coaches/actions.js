@@ -24,7 +24,11 @@ export default {
     }
     context.commit('registerCoach', { ...coachData, id: coachId });
   },
-  async fetchCoaches(context) {
+  async fetchCoaches(context, payload) {
+    if (!context.getters.shouldUpdate && !payload.refreshNow) {
+      // Avoid unecessary fetching but allows for refresh with button
+      return;
+    }
     const response = await fetch(
       `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`
     );
@@ -51,5 +55,6 @@ export default {
     }
 
     context.commit('fetchCoaches', coaches);
+    context.commit('setFetchTime');
   }
 };
