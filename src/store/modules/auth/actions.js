@@ -1,6 +1,6 @@
 export default {
   login() {},
-  async signup(context, payload) {
+  async signUp(context, payload) {
     const newUser = {
       email: payload.email,
       password: payload.password,
