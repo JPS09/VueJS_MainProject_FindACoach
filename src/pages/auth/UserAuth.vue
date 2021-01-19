@@ -20,10 +20,13 @@
         />
       </div>
       <p v-if="!isFormValid" :class="{ errors: !isFormValid }">
-        At least one input is blank or your password is smaller than 6 characters
+        At least one input is blank or your password is smaller than 6
+        characters
       </p>
-      <base-button>Login</base-button>
-      <base-button type="button" mode="flat">Sign-up Instead</base-button>
+      <base-button>{{ actionButtonText }}</base-button>
+      <base-button type="button" mode="flat" @click="switchMode">{{
+        switchButtonText
+      }}</base-button>
     </form>
   </base-card>
 </template>
@@ -37,6 +40,22 @@ export default {
       isFormValid: true,
       mode: 'login'
     };
+  },
+  computed: {
+    actionButtonText() {
+      if (this.mode === 'login') {
+        return 'Login';
+      } else {
+        return 'Sign Up';
+      }
+    },
+    switchButtonText() {
+      if (this.mode === 'login') {
+        return 'Sign Up instead';
+      } else {
+        return 'Login instead';
+      }
+    }
   },
   methods: {
     submitForm() {
@@ -53,6 +72,13 @@ export default {
     },
     clearErrors() {
       this.isFormValid = true;
+    },
+    switchMode() {
+      if (this.mode === 'login') {
+        this.mode = 'signup';
+      } else {
+        this.mode = 'login';
+      }
     }
   }
 };
