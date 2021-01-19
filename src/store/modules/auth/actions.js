@@ -13,8 +13,14 @@ export default {
         body: JSON.stringify(newUser)
       }
     );
+
+    const responseData = await response.json();
     if (!response.ok) {
-      //error handling
+      const error = new Error(
+        responseData.message ||
+          'Something when wrong while creating your profile, please try again'
+      );
+      throw error;
     }
   }
 };
