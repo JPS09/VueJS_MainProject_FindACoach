@@ -1,7 +1,7 @@
 export default {
   async registerCoach(context, payload) {
     // waits for await functions to finish
-    const coachId = context.rootGetters.coachId;
+    const userId = context.rootGetters.userId;
     const coachData = {
       firstName: payload.first,
       lastName: payload.last,
@@ -11,7 +11,7 @@ export default {
     };
     const response = await fetch(
       //Is a promise, like a .then
-      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches/${coachId}.json`,
+      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData)
@@ -22,7 +22,7 @@ export default {
     if (!response.ok) {
       // show error
     }
-    context.commit('registerCoach', { ...coachData, id: coachId });
+    context.commit('registerCoach', { ...coachData, id: userId });
   },
   async fetchCoaches(context, payload) {
     if (!context.getters.shouldUpdate && !payload.refreshNow) {

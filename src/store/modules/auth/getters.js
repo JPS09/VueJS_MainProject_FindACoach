@@ -1,5 +1,5 @@
 export default {
-  coachId(state) {
-    return state.coachId;
+  userId(state) {
+    return state.userId;
   }
 };

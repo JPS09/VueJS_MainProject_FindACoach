@@ -4,7 +4,7 @@ import authGetters from './getters.js';
 export default {
   state() {
     return {
-      coachId: null,
+      userId: null,
       token: null,
       tokenExpiration: null
     };
