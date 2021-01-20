@@ -101,7 +101,10 @@ export default {
           await this.$store.dispatch('signUp', user);
         }
         this.isLoading = false;
-        this.$router.replace('/coaches');
+
+        const redirectionPath = '/' + (this.$route.query.redirect || 'coaches');
+        this.$router.replace(redirectionPath);
+
       } catch (error) {
         this.isLoading = false;
         this.error =
