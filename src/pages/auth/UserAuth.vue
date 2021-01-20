@@ -1,34 +1,42 @@
 <template>
-  <base-card>
-    <form @submit.prevent="submitForm">
-      <div class="form-controls">
-        <label for="email">E-mail</label>
-        <input
-          type="email"
-          id="email"
-          v-model.trim="email"
-          @blur="clearErrors"
-        />
-      </div>
-      <div class="form-controls">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          v-model.trim="password"
-          @blur="clearErrors"
-        />
-      </div>
-      <p v-if="!isFormValid" :class="{ errors: !isFormValid }">
-        At least one input is blank or your password is smaller than 6
-        characters
-      </p>
-      <base-button>{{ actionButtonText }}</base-button>
-      <base-button type="button" mode="flat" @click="switchMode">{{
-        switchButtonText
-      }}</base-button>
-    </form>
-  </base-card>
+  <div>
+    <base-dialog
+      :show="!!error"
+      title="Something went wrong"
+      @close="handleError"
+    ></base-dialog>
+    <base-card>
+      <form @submit.prevent="submitForm">
+        <div class="form-controls">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            v-model.trim="email"
+            @blur="clearErrors"
+          />
+        </div>
+        <div class="form-controls">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            v-model.trim="password"
+            @blur="clearErrors"
+          />
+        </div>
+        <p v-if="!isFormValid" :class="{ errors: !isFormValid }">
+          At least one input is blank or your password is smaller than 6
+          characters
+        </p>
+        <base-button>{{ actionButtonText }}</base-button>
+        <base-button type="button" mode="flat" @click="switchMode">{{
+          switchButtonText
+        }}</base-button>
+        <base-spinner v-if="isLoading"></base-spinner>
+      </form>
+    </base-card>
+  </div>
 </template>
 
 <script>
@@ -38,7 +46,9 @@ export default {
       email: '',
       password: '',
       isFormValid: true,
-      mode: 'login'
+      mode: 'login',
+      error: null,
+      isLoading: false
     };
   },
   computed: {
@@ -58,7 +68,7 @@ export default {
     }
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       this.isFormValid = true;
       if (
         this.email === '' ||
@@ -69,14 +79,20 @@ export default {
         this.isFormValid = false;
         return;
       }
-      if (this.mode === 'login') {
-        //
-      } else {
-        const user = {
-          email: this.email,
-          password: this.password
-        };
-        this.$store.dispatch('signUp', user);
+      try {
+        if (this.mode === 'login') {
+          //
+        } else {
+          const user = {
+            email: this.email,
+            password: this.password
+          };
+          await this.$store.dispatch('signUp', user);
+        }
+      } catch (error) {
+        this.error =
+          error.message ||
+          'Something went wront while creating your account, please try again';
       }
     },
     clearErrors() {
@@ -88,6 +104,9 @@ export default {
       } else {
         this.mode = 'login';
       }
+    },
+    handleError() {
+      this.error = null;
     }
   }
 };
