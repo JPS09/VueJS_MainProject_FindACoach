@@ -17,10 +17,13 @@ export default {
         body: JSON.stringify(coachData)
       }
     );
-    // const responseData = await response.json();
+    const responseData = await response.json();
 
     if (!response.ok) {
-      // show error
+      const error = new Error(
+        responseData.message || 'An error occured while registering, please try'
+      );
+      throw error;
     }
     context.commit('registerCoach', { ...coachData, id: userId });
   },

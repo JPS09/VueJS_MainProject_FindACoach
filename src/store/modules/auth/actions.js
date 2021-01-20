@@ -1,5 +1,6 @@
 export default {
   async logIn(context, payload) {
+
     const existingUser = {
       email: payload.email,
       password: payload.password,
@@ -12,7 +13,9 @@ export default {
         body: JSON.stringify(existingUser)
       }
     );
+
     const responseData = await response.json();
+
     if (!response.ok) {
       const error = new Error(
         responseData.message ||
@@ -20,14 +23,17 @@ export default {
       );
       throw error;
     }
+
     const localUser = {
       token: responseData.idToken,
       userId: responseData.localId,
       tokenExpiration: responseData.expiresIn
     };
+
     context.commit('setUser', localUser);
   },
   async signUp(context, payload) {
+
     const newUser = {
       email: payload.email,
       password: payload.password,
@@ -42,6 +48,7 @@ export default {
     );
 
     const responseData = await response.json();
+
     if (!response.ok) {
       const error = new Error(
         responseData.message ||
@@ -49,7 +56,9 @@ export default {
       );
       throw error;
     }
-    console.log(responseData);
+
+
+
     const localUser = {
       token: responseData.idToken,
       userId: responseData.localId,
