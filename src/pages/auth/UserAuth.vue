@@ -105,7 +105,7 @@ export default {
         this.isLoading = false;
         this.error =
           error.message ||
-          'Something went wront while creating your account, please try again';
+          'Something went wrong while creating your account, please try again';
       }
     },
     clearErrors() {
