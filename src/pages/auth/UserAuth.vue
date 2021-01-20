@@ -101,6 +101,7 @@ export default {
           await this.$store.dispatch('signUp', user);
         }
         this.isLoading = false;
+        this.$router.replace('/coaches');
       } catch (error) {
         this.isLoading = false;
         this.error =

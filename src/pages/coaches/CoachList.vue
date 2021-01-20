@@ -17,7 +17,7 @@
           <base-button mode="outline" @click="loadCoaches(true)"
             >Refresh</base-button
           >
-          <base-button link to="/register" v-if="!isCoach && !isLoading">
+          <base-button link to="/register" v-if="displayRegisterButton">
             Register as a Coach
           </base-button>
           <!--Adding a prop sets it to true -->
@@ -83,6 +83,12 @@ export default {
     },
     isCoach() {
       return this.$store.getters['coaches/isCoach'];
+    },
+    displayRegisterButton(){
+      return (!this.isCoach && !this.isLoading) && this.isAuthenticated
+    },
+    isAuthenticated(){
+      return this.$store.getters.isAuthenticated
     }
   },
   methods: {
