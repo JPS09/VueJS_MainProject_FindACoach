@@ -50,7 +50,7 @@ export default {
     if (!response.ok) {
       const error = new Error(
         responseData.message ||
-          'Something when wrong while creating your profile, please try again'
+          'Something went wrong while creating your profile, please try again'
       );
       throw error;
     }

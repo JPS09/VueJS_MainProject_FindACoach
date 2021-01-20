@@ -21,7 +21,7 @@ export default {
 
     if (!response.ok) {
       const error = new Error(
-        responseData.message || 'An error occured while registering, please try'
+        responseData.message || 'An error occured while registering, please try again'
       );
       throw error;
     }
