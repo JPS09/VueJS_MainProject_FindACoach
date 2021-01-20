@@ -61,5 +61,9 @@ export default {
       tokenExpiration: responseData.expiresIn
     };
     context.commit('setUser', localUser);
+  },
+  logOut(context) {
+    const logOut = { token: null, userId: null, tokenExpiration: null };
+    context.commit('setUser', logOut);
   }
 };
