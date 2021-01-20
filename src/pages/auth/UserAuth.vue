@@ -8,7 +8,9 @@
       :show="!!error"
       title="Something went wrong"
       @close="handleError"
-    ></base-dialog>
+    >
+      <p>{{ error }}</p>
+    </base-dialog>
     <base-card>
       <form @submit.prevent="submitForm">
         <div class="form-controls">
