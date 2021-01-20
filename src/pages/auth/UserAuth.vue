@@ -1,5 +1,9 @@
 <template>
   <div>
+    <base-dialog fixed :show="isLoading" title="Authenticating">
+      <p>Connecting to your account</p>
+      <base-spinner></base-spinner>
+    </base-dialog>
     <base-dialog
       :show="!!error"
       title="Something went wrong"
