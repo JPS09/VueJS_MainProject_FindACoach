@@ -1,5 +1,5 @@
 export default {
-  async login(context, payload) {
+  async logIn(context, payload) {
     const existingUser = {
       email: payload.email,
       password: payload.password,

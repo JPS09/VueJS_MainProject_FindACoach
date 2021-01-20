@@ -85,16 +85,18 @@ export default {
         this.isFormValid = false;
         return;
       }
+      const user = {
+        email: this.email,
+        password: this.password
+      };
+      this.isLoading = true;
       try {
         if (this.mode === 'login') {
-          //
+          await this.$store.dispatch('logIn', user);
         } else {
-          const user = {
-            email: this.email,
-            password: this.password
-          };
           await this.$store.dispatch('signUp', user);
         }
+        this.isLoading = false;
       } catch (error) {
         this.error =
           error.message ||
