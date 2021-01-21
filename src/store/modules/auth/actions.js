@@ -29,14 +29,20 @@ export default {
       throw error;
     }
 
+    const expiresIn = +responseData.expiresIn * 1000; // the '+' converts it into a number type and we then converts it to miliseconds to correspond with getTime()
+    const expirationDate = new Date().getTime() + expiresIn;
     const localUser = {
       token: responseData.idToken,
-      userId: responseData.localId,
-      tokenExpiration: responseData.expiresIn
+      userId: responseData.localId
     };
 
     localStorage.setItem('token', localUser.token);
     localStorage.setItem('userId', localUser.userId);
+    localStorage.setItem('tokenExpiration', expirationDate);
+
+    setTimeout(() => {
+      context.dispatch('logOut');
+    }, expiresIn);
 
     context.commit('setUser', localUser);
   },
@@ -61,12 +67,14 @@ export default {
     if (token && userId) {
       context.commit('setUser', {
         token: token,
-        userId: userId,
-        tokenExpiration: null
+        userId: userId
       });
     }
   },
   logOut(context) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+
     const logOut = { token: null, userId: null, tokenExpiration: null };
     context.commit('setUser', logOut);
   }
