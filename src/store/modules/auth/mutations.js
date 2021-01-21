@@ -5,6 +5,6 @@ export default {
     state.didAutoLogOut = false;
   },
   setAutoLogOut(state) {
-    state.didAutoLogOut;
+    state.didAutoLogOut = true;
   }
 };
