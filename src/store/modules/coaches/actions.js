@@ -1,7 +1,8 @@
 export default {
   async registerCoach(context, payload) {
     // waits for await functions to finish
-    const coachId = context.rootGetters.coachId;
+    const userId = context.rootGetters.userId;
+    const token = context.rootGetters.token;
     const coachData = {
       firstName: payload.first,
       lastName: payload.last,
@@ -11,18 +12,22 @@ export default {
     };
     const response = await fetch(
       //Is a promise, like a .then
-      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches/coach${coachId}.json`,
+      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json?auth=${token}`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData)
       }
     );
-    // const responseData = await response.json();
+    const responseData = await response.json();
 
     if (!response.ok) {
-      // show error
+      const error = new Error(
+        responseData.message ||
+          'An error occured while registering, please try again'
+      );
+      throw error;
     }
-    context.commit('registerCoach', { ...coachData, id: coachId });
+    context.commit('registerCoach', { ...coachData, id: userId });
   },
   async fetchCoaches(context, payload) {
     if (!context.getters.shouldUpdate && !payload.refreshNow) {

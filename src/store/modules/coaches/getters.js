@@ -7,8 +7,8 @@ export default {
   },
   isCoach(_1, getters, _2, rootGetters) {
     const coaches = getters.coaches;
-    const coachId = rootGetters.coachId;
-    return coaches.some(coach => coach.id === coachId); //Check if at least one element is true
+    const userId = rootGetters.userId;
+    return coaches.some(coach => coach.id === userId); //Check if at least one element is true
   },
   shouldUpdate(state) {
     const lastFetch = state.lastFetch;

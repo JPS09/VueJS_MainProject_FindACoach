@@ -6,7 +6,7 @@ export default {
     };
 
     const response = await fetch(
-      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/requests/${payload.coachId}.json`,
+      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/requests/${payload.userId}.json`,
       {
         method: 'POST',
         body: JSON.stringify(newRequest)
@@ -23,14 +23,15 @@ export default {
     }
 
     newRequest.id = responseData.name;
-    newRequest.coachId = payload.coachId;
+    newRequest.userId = payload.userId;
 
     context.commit('addRequest', newRequest);
   },
   async fetchRequests(context) {
-    const coachId = context.rootGetters.coachId;
+    const userId = context.rootGetters.userId;
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json`
+      `https://seekacoach-56074-default-rtdb.europe-west1.firebasedatabase.app/requests/${userId}.json?auth=${token}`
     );
     const responseData = await response.json();
 
@@ -45,7 +46,7 @@ export default {
     for (const key in responseData) {
       const request = {
         id: key,
-        coachId: coachId,
+        userId: userId,
         userEmail: responseData[key].userEmail,
         message: responseData[key].message
       };

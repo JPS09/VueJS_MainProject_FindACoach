@@ -64,7 +64,7 @@ export default {
       }
 
       const sentRequest = {
-        coachId: this.$route.params.id,
+        userId: this.$route.params.id,
         email: this.email.val,
         message: this.message.val
       };
