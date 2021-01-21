@@ -35,6 +35,9 @@ export default {
       tokenExpiration: responseData.expiresIn
     };
 
+    localStorage.setItem('token', localUser.token);
+    localStorage.setItem('userId', localUser.userId);
+
     context.commit('setUser', localUser);
   },
   logIn(context, payload) {
@@ -50,6 +53,18 @@ export default {
       ...payload,
       mode: 'signup'
     });
+  },
+  autoLogin(context) {
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+
+    if (token && userId) {
+      context.commit('setUser', {
+        token: token,
+        userId: userId,
+        tokenExpiration: null
+      });
+    }
   },
   logOut(context) {
     const logOut = { token: null, userId: null, tokenExpiration: null };
