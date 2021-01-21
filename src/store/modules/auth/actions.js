@@ -1,4 +1,5 @@
 let timer;
+
 export default {
   async auth(context, payload) {
     const mode = payload.mode;
@@ -42,7 +43,7 @@ export default {
     localStorage.setItem('tokenExpiration', expirationDate);
 
     timer = setTimeout(() => {
-      context.dispatch('logOut');
+      context.dispatch('autoLogOut');
     }, expiresIn);
 
     context.commit('setUser', localUser);
@@ -64,6 +65,17 @@ export default {
   autoLogin(context) {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
+
+    const expiresIn = +tokenExpiration - new Date().getTime();
+
+    if (expiresIn < 0) {
+      return;
+    }
+
+    timer = setTimeout(() => {
+      context.dispatch('autoLogOut');
+    }, expiresIn);
 
     if (token && userId) {
       context.commit('setUser', {
@@ -75,10 +87,15 @@ export default {
   logOut(context) {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.remove('tokenExpiration');
 
     clearTimeout(timer);
 
-    const logOut = { token: null, userId: null, tokenExpiration: null };
+    const logOut = { token: null, userId: null };
     context.commit('setUser', logOut);
+  },
+  autoLogOut(context) {
+    context.dispatch('logOut');
+    context.commit('setAutoLogOut');
   }
 };
