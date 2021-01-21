@@ -15,16 +15,16 @@ import store from './store/index.js';
   const UserAuth = () => import('./pages/auth/UserAuth.vue');
 
   //Bad
-  // const componentName = defineAsynComponent(()=>import('pathToFile'))
+    // const componentName = defineAsynComponent(()=>import('pathToFile'))
 
-  //Doesn't make use of the router support of dynamic imports
-  // import CoachDetails from './pages/coaches/CoachDetails.vue';
-  // import CoachRegistration from './pages/coaches/CoachRegistration.vue';
-  // import ContactCoach from './pages/requests/ContactCoach.vue';
-  // import NotFound from './pages/NotFound.vue';
-  // import ReceivedRequests from './pages/requests/ReceivedRequests.vue';
-  // import UserAuth from './pages/auth/UserAuth.vue';
-  // import CoachList from './pages/coaches/CoachList.vue';
+    //Doesn't make use of the router support of dynamic imports
+    // import CoachDetails from './pages/coaches/CoachDetails.vue';
+    // import CoachRegistration from './pages/coaches/CoachRegistration.vue';
+    // import ContactCoach from './pages/requests/ContactCoach.vue';
+    // import NotFound from './pages/NotFound.vue';
+    // import ReceivedRequests from './pages/requests/ReceivedRequests.vue';
+    // import UserAuth from './pages/auth/UserAuth.vue';
+    // import CoachList from './pages/coaches/CoachList.vue';
 
   const router = createRouter({
   history: createWebHistory(),
