@@ -15,6 +15,13 @@ export default {
   },
   created(){
     this.$store.dispatch('autoLogin')
+  },
+  watch:{
+    didAutoLogOut(currentValue, oldValue){
+      if (currentValue && currentValue !== oldValue){
+        this.$router.replace('/coaches')
+      }
+    }
   }
 };
 </script>
