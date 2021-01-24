@@ -9,7 +9,7 @@ This is the **main project** of ***[a course](https://www.udemy.com/course/vuejs
 - Using Firebase RealTime Database to **make data persistant**.
 - Using Firebase Auth to **Authenticate users**.
 - Taking advantage of Javascript built-in *localStorage* to implement an **Auto-Login/Auto-Logout feature**.
-- Implementing a custom error handling feature to keep the user aware of any issue
+- Implementing a **custom error** handling feature to _keep the user aware_ of any issue
 - **Optimizing components** by making them *asynchronous* to avoid unnecessary code loading.
 - **Building and deploying** this app to Firebase hosting.
 
